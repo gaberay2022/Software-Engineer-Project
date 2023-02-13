@@ -44,7 +44,7 @@ Add additional notes about how to deploy this on a live system.
 
 ## Built With
 
-* [Huroku](http://link) - data base used
+* [Heroku](http://link) - data base used
 
 
 
