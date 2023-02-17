@@ -1,0 +1,20 @@
+/*splash screen with 3 second fade out made by Ryan Cazares*/
+/*still needs to be implemented in the html file*/ 
+.splash_screen {
+    background-image: url('path/to/image.png');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    animation-name: fadeOut;
+    animation-duration: 3s;
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
