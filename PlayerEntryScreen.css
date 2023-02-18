@@ -24,3 +24,7 @@
       display: none;
     }
   }
+/*Get rid of splash screen to interact with player entry screen*/
+.splash_screen_delete {
+  background-image: none;
+}
