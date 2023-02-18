@@ -22,9 +22,6 @@
     100% {
       opacity: 0;
       display: none;
+      background-image: none; /*delete splash screen*/
     }
   }
-/*Get rid of splash screen to interact with player entry screen*/
-.splash_screen_delete {
-  background-image: none;
-}
