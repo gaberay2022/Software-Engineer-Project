@@ -1,1 +1,1 @@
-web: gunicorn app:Lasertag
+web: gunicorn run:Lasertag
