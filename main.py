@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-import psycopg2
 
 Lasertag = Flask(__name__)
 
