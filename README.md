@@ -58,7 +58,7 @@ We use ["Versioning control"](http://link) for version control
 * **Gabriel Garcia** - *what he did* - [link](https://link)
 * **Ryan Cazares** - *what he did* - [link](https://link)
 * **Abraham Mitchell** - *what he did* - [link](https://link)
-* **Marvin Violantes** - *what he did* - [link](https://link)
+* **Marvin Violantes** - *Working on database* - [link](https://link)
 * **Santiago Dorado** - *what he did* - [link](https://link)
 
 list of [contributors](link) for porject
