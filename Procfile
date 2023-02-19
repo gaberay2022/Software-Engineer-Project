@@ -1,1 +1,1 @@
-web: gunicorn run:Lasertag
+web: gunicorn main:Lasertag
