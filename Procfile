@@ -1,1 +1,1 @@
-web: gunicorn app:PlayerEntryScreen
+web: gunicorn app:Lasertag
