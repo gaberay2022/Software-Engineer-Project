@@ -12,7 +12,14 @@ def get_db_connection():
 
 @Lasertag.route('/')
 def home():
-    return render_template('PlayerEntryScreen.html')
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM player;')
+    players = cur.fetchall()
+    cur.close()
+    conn.close()
+    return players
+    #return render_template('PlayerEntryScreen.html')
 
 if __name__ == '__main__':
     Lasertag.run()
