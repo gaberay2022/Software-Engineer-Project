@@ -18,8 +18,7 @@ def home():
     players = cur.fetchall()
     cur.close()
     conn.close()
-    return players
-    #return render_template('PlayerEntryScreen.html')
+    return render_template('PlayerEntryScreen.html', player=players)
 
 if __name__ == '__main__':
     Lasertag.run()
