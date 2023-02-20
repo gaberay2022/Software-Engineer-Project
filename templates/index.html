@@ -2,9 +2,12 @@
 
 {% block content %}
     <h1>{% block title %} Players {% endblock %}</h1>
-    {% for player in player %}
-        <div class='player'>
-            <h3>#{{ player[0] }}</h3>
+    {% for players in player %}
+        <div class='Players'>
+            <h3>#{{ Players[0] }} - {{ Players[1] }} BY {{ Players[2] }}</h3>
+            <i><p>({{ Players[3] }} pages)</p></i>
+            <p class='review'>{{ Players[4] }}</p>
+            <i><p>Added {{ Players[5] }}</p></i>
         </div>
     {% endfor %}
 {% endblock %}
