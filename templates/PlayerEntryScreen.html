@@ -15,7 +15,6 @@
         <h1> </h1>
     </div>
 <h2>Edit Current Game</h2>
-<div class = "form-wrapper">
 <p style="font-family:'Courier New'">RED TEAM</p>
 <button type = "button" oneclick="RedF()" action = "/R_Enter">Enter</button>
 <form class = "R_tableID">
@@ -66,7 +65,7 @@
     <input type = "content" id = "G_ID_20" name = "G_ID_20" class = "GreenID" value> <br>
 
 </form>
-</div>
+
 <h3>Current Players: {{ player }}</h3>
 <div class = "control_section">
     <div class = "buttons">
@@ -102,4 +101,4 @@
     setTimeout(function() {
       document.querySelector('.splash_screen').style.display = 'none';
     }, 6000); // 6000 milliseconds = 6 seconds
-  </script>
+
