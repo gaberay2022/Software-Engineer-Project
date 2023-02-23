@@ -1,0 +1,36 @@
+/*splash screen with 3 second fade out made by Ryan Cazares*/
+/*implemented into html file by Gabriel Garcia*/
+.splash_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url('logo.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    z-index: 200;
+    animation-name: fadeOut;
+    animation-duration: 6s;
+    opacity: 0%;
+    
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .form-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  .R_tableID,
+  .G_tableID { 
+      flex: 1;
+      margin-right: 10px;
+  }
