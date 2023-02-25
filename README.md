@@ -1,6 +1,6 @@
 # Laser Tag Project 
 
-Laser Tag Project Description
+A simulation of the original Photon lasertag system. 
 
 ## Getting Started
 
@@ -20,6 +20,13 @@ List of required software to be able to run this application:
 
 A step by step series of examples that tell you how to get a development env running:
 
+To install flask: pip3 install -U Flask
+
+To install psycopg2: pip3 install psycopg2
+
+  >If an error such as "Error: pg_config executable not found" is given,
+  >the environment is missing necessary elements for successful installation.
+  >> try instead: pip3 install psycopg2-binary
 
 ## Running the tests
 
