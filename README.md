@@ -9,11 +9,11 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 List of required software to be able to run this application:
-*Flask==2.2.2
-*Jinja2==3.0
-*Werkzeug==2.2.2
-*gunicorn==20.1.0
-*psycopg2==2.9.5
+* Flask==2.2.2
+* Jinja2==3.0
+* Werkzeug==2.2.2
+* gunicorn==20.1.0
+* psycopg2==2.9.5
 
 
 ### Installing
