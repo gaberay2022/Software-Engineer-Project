@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 
 
@@ -18,6 +18,13 @@ def home():
     cur.close()
     conn.close()
     return render_template('PlayerEntryScreen.html', player=players)
+
+@Lasertag.route('/GamePlayScreen', methods=['GET','POST'])
+def GamePlayScreen():
+    if request.method == 'POST':
+        return redirect(url_for('index'))
+    return render_template('GamePlayScreen.html')
+
 
 if __name__ == '__main__':
     Lasertag.run()
