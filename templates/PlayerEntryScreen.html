@@ -1,105 +1,44 @@
-<!-- lizbet rivera created basic player entry page -->
-
-
 <!DOCTYPE html>
 <html>
-
-
-<head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/PlayerEntryScreen.css')}}">
-<title>Entry Terminal</title>
-</head>
-
-<body>
-    <div class="splash_screen">
-        <h1> </h1>
-    </div>
-<h2>Edit Current Game</h2>
-<div class = "form-wrapper">
-<p style="font-family:'Courier New'">RED TEAM</p>
-<button type = "button" oneclick="RedF()" action = "/R_Enter">Enter</button>
-<form class = "R_tableID">
-    <input type = "content" id = "R_ID_1" name = "R_ID_1" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_2" name = "R_ID_2" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_3" name = "R_ID_3" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_4" name = "R_ID_4" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_5" name = "R_ID_5" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_6" name = "R_ID_6" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_7" name = "R_ID_7" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_8" name = "R_ID_8" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_9" name = "R_ID_9" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_10" name = "R_ID_10" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_11" name = "R_ID_11" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_12" name = "R_ID_12" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_13" name = "R_ID_13" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_14" name = "R_ID_14" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_15" name = "R_ID_15" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_16" name = "R_ID_16" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_17" name = "R_ID_17" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_18" name = "R_ID_18" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_19" name = "R_ID_19" class = "RedID" value> <br>
-    <input type = "content" id = "R_ID_20" name = "R_ID_20" class = "RedID" value> <br>
-</form>
-
-<p style="font-family:'Courier New'">GREEN TEAM</p>
-<button type = "button" oneclick="GreenF()" action = "/G_Enter">Enter</button>
-<form class = "G_tableID">
-    <input type = "content" id = "G_ID_1" name = "G_ID_1" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_2" name = "G_ID_2" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_3" name = "G_ID_3" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_4" name = "G_ID_4" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_5" name = "G_ID_5" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_6" name = "G_ID_6" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_7" name = "G_ID_7" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_8" name = "G_ID_8" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_9" name = "G_ID_9" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_10" name = "G_ID_10" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_11" name = "G_ID_11" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_12" name = "G_ID_12" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_13" name = "G_ID_13" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_14" name = "G_ID_14" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_15" name = "G_ID_15" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_16" name = "G_ID_16" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_17" name = "G_ID_17" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_18" name = "G_ID_18" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_19" name = "G_ID_19" class = "GreenID" value> <br>
-    <input type = "content" id = "G_ID_20" name = "G_ID_20" class = "GreenID" value> <br>
-
-</form>
-</div>
-<h3>Current Players: {{ player }}</h3>
-<div class = "control_section">
-    <div class = "buttons">
-        <p style="font-family:verdana">F1<br>Edit<br>Game</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F2<br>Game<br>Parameters</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F3<br>Start<br>Game</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F5<br>PreEntered<br>Games</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F7</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F8<br>View<br>Game</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F10<br>Flick<br>Sync</p>
-    </div>
-    <div class = "buttons">
-        <p style="font-family:verdana">F12<br>Clear<br>Game</p>
-    </div>
-    
-
-<p style="font-family:verdana"> Del to Delete Player, lns to Manually Insert, or edit</p>
+  <head>
+    <title>Player Entry</title>
+  </head>
+  <body>
+    <h1>Enter Player</h1>
+    <form>
+      <label for="lobby-id">Lobby ID:</label>
+      <input type="text" id="lobby-id" name="lobby-id"><br><br>
+      <h3>Player 1</h3>
+      <label for="player-1-name">Enter Name:</label>
+      <input type="text" id="player-1-name" name="player-1-name">
+      <label for="player-1-id">ID:</label>
+      <input type="text" id="player-1-id" name="player-1-id"><br><br>
+      <h3>Player 2</h3>
+      <label for="player-2-name">Enter Name:</label>
+      <input type="text" id="player-2-name" name="player-2-name">
+      <label for="player-2-id">ID:</label>
+      <input type="text" id="player-2-id" name="player-2-id"><br><br>
+      <h3>Player 3</h3>
+      <label for="player-3-name">Enter Name:</label>
+      <input type="text" id="player-3-name" name="player-3-name">
+      <label for="player-3-id">ID:</label>
+      <input type="text" id="player-3-id" name="player-3-id"><br><br>
+      <h3>Player 4</h3>
+      <label for="player-4-name">Enter Name:</label>
+      <input type="text" id="player-4-name" name="player-4-name">
+      <label for="player-4-id">ID:</label>
+      <input type="text" id="player-4-id" name="player-4-id"><br><br>
+      <h3>Player 5</h3>
+      <label for="player-5-name">Enter Name:</label>
+      <input type="text" id="player-5-name" name="player-5-name">
+      <label for="player-5-id">ID:</label>
+      <input type="text" id="player-5-id" name="player-5-id"><br><br>
+      <h3>Player 6</h3>
+      <label for="player-6-name">Enter Name:</label>
+      <input type="text" id="player-6-name" name="player-6-name">
+      <label for="player-6-id">ID:</label>
+      <input type="text" id="player-6-id" name="player-6-id"><br><br>
+    </form>
+    <button onclick="location.href='PlayerEntryScreen.html'">Start Game</button>
 </body>
 </html>
-<script>
-    setTimeout(function() {
-      document.querySelector('.splash_screen').style.display = 'none';
-    }, 6000); // 6000 milliseconds = 6 seconds
-  </script>
