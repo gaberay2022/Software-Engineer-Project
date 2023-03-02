@@ -1,1 +1,43 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Player Entry</title>
+  </head>
+  <body>
+    <h1>Enter Player</h1>
+    <form>
+      <label for="lobby-id">Lobby ID:</label>
+      <input type="text" id="lobby-id" name="lobby-id"><br><br>
+      <h3>Player 1</h3>
+      <label for="player-1-name">Enter Name:</label>
+      <input type="text" id="player-1-name" name="player-1-name">
+      <label for="player-1-id">ID:</label>
+      <input type="text" id="player-1-id" name="player-1-id"><br><br>
+      <h3>Player 2</h3>
+      <label for="player-2-name">Enter Name:</label>
+      <input type="text" id="player-2-name" name="player-2-name">
+      <label for="player-2-id">ID:</label>
+      <input type="text" id="player-2-id" name="player-2-id"><br><br>
+      <h3>Player 3</h3>
+      <label for="player-3-name">Enter Name:</label>
+      <input type="text" id="player-3-name" name="player-3-name">
+      <label for="player-3-id">ID:</label>
+      <input type="text" id="player-3-id" name="player-3-id"><br><br>
+      <h3>Player 4</h3>
+      <label for="player-4-name">Enter Name:</label>
+      <input type="text" id="player-4-name" name="player-4-name">
+      <label for="player-4-id">ID:</label>
+      <input type="text" id="player-4-id" name="player-4-id"><br><br>
+      <h3>Player 5</h3>
+      <label for="player-5-name">Enter Name:</label>
+      <input type="text" id="player-5-name" name="player-5-name">
+      <label for="player-5-id">ID:</label>
+      <input type="text" id="player-5-id" name="player-5-id"><br><br>
+      <h3>Player 6</h3>
+      <label for="player-6-name">Enter Name:</label>
+      <input type="text" id="player-6-name" name="player-6-name">
+      <label for="player-6-id">ID:</label>
+      <input type="text" id="player-6-id" name="player-6-id"><br><br>
+    </form>
+</body>
+</html>
