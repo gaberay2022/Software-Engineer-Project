@@ -2,8 +2,12 @@
 <html>
   <head>
     <title>Player Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/PlayerEntryScreen.css')}}">
   </head>
   <body>
+    <div class="splash_screen">
+      <h1> </h1>
+    </div>
     <h1>Enter Player</h1>
     <form>
       <label for="lobby-id">Lobby ID:</label>
@@ -42,3 +46,8 @@
     <button onclick="location.href='{{ url_for('GamePlayScreen') }}'">Start Game</button>
 </body>
 </html>
+<script>
+  setTimeout(function() {
+    document.querySelector('.splash_screen').style.display = 'none';
+  }, 6000); // 6000 milliseconds = 6 seconds
+</script>
