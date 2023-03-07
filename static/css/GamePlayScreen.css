@@ -1,0 +1,11 @@
+/*implemented into html file by Gabriel Garcia*/
+.form-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.R_tableID,
+.G_tableID { 
+    flex: 1;
+    margin-right: 10px;
+}
