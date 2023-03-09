@@ -9,39 +9,52 @@
       <h1> </h1>
     </div>
     <h1>Enter Player</h1>
-    <form>
+    <form action='PlayerEntryScreen' method="POST">
       <label for="lobby-id">Lobby ID:</label>
       <input type="text" id="lobby-id" name="lobby-id"><br><br>
       <h3>Player 1</h3>
-      <label for="player-1-name">Enter Name:</label>
-      <input type="text" id="player-1-name" name="player-1-name">
-      <label for="player-1-id">ID:</label>
-      <input type="text" id="player-1-id" name="player-1-id"><br><br>
+      <label for="player-1-fn">First Name:</label>
+      <input type="text" id="player-1-fn" name="player-1-fn">
+      <label for="player-1-ln">Last Name:</label>
+      <input type="text" id="player-1-ln" name="player-1-ln">
+      <label for="player-1-cn">Code Name:</label>
+      <input type="text" id="player-1-cn" name="player-1-cn"><br><br>
       <h3>Player 2</h3>
-      <label for="player-2-name">Enter Name:</label>
-      <input type="text" id="player-2-name" name="player-2-name">
-      <label for="player-2-id">ID:</label>
-      <input type="text" id="player-2-id" name="player-2-id"><br><br>
+      <label for="player-2-fn">First Name:</label>
+      <input type="text" id="player-2-fn" name="player-2-fn">
+      <label for="player-2-ln">Last Name:</label>
+      <input type="text" id="player-2-ln" name="player-2-ln">
+      <label for="player-2-cn">Code Name:</label>
+      <input type="text" id="player-2-cn" name="player-2-cn"><br><br>
       <h3>Player 3</h3>
-      <label for="player-3-name">Enter Name:</label>
-      <input type="text" id="player-3-name" name="player-3-name">
-      <label for="player-3-id">ID:</label>
-      <input type="text" id="player-3-id" name="player-3-id"><br><br>
+      <label for="player-3-fn">First Name:</label>
+      <input type="text" id="player-3-fn" name="player-3-fn">
+      <label for="player-3-ln">Last Name:</label>
+      <input type="text" id="player-3-ln" name="player-3-ln">
+      <label for="player-3-cn">Code Name:</label>
+      <input type="text" id="player-3-cn" name="player-3-cn"><br><br>
       <h3>Player 4</h3>
-      <label for="player-4-name">Enter Name:</label>
-      <input type="text" id="player-4-name" name="player-4-name">
-      <label for="player-4-id">ID:</label>
-      <input type="text" id="player-4-id" name="player-4-id"><br><br>
+      <label for="player-4-fn">First Name:</label>
+      <input type="text" id="player-4-fn" name="player-4-fn">
+      <label for="player-4-ln">Last Name:</label>
+      <input type="text" id="player-4-ln" name="player-4-ln">
+      <label for="player-4-cn">Code Name:</label>
+      <input type="text" id="player-4-cn" name="player-4-cn"><br><br>
       <h3>Player 5</h3>
-      <label for="player-5-name">Enter Name:</label>
-      <input type="text" id="player-5-name" name="player-5-name">
-      <label for="player-5-id">ID:</label>
-      <input type="text" id="player-5-id" name="player-5-id"><br><br>
+      <label for="player-5-fn">First Name:</label>
+      <input type="text" id="player-5-fn" name="player-5-fn">
+      <label for="player-5-ln">Last Name:</label>
+      <input type="text" id="player-5-ln" name="player-5-ln">
+      <label for="player-5-cn">Code Name:</label>
+      <input type="text" id="player-5-cn" name="player-5-cn"><br><br>
       <h3>Player 6</h3>
-      <label for="player-6-name">Enter Name:</label>
-      <input type="text" id="player-6-name" name="player-6-name">
-      <label for="player-6-id">ID:</label>
-      <input type="text" id="player-6-id" name="player-6-id"><br><br>
+      <label for="player-6-fn">First Name:</label>
+      <input type="text" id="player-6-fn" name="player-6-fn">
+      <label for="player-1-ln">Last Name:</label>
+      <input type="text" id="player-6-ln" name="player-6-ln">
+      <label for="player-1-cn">Code Name:</label>
+      <input type="text" id="player-6-cn" name="player-6-cn"><br><br>
+      <input type="submit" value="Submit">
     </form>
     <button onclick="location.href='{{ url_for('GamePlayScreen') }}'">Start Game</button>
 </body>
