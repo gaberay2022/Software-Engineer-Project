@@ -30,7 +30,7 @@ To install psycopg2: pip3 install psycopg2
 
 ## Running the tests
 
-Explain how to run the automated tests for this system.
+To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/how-to-open-a-github-repository-in-vs-code-online/)
 
 ### Break down into end to end tests
 
