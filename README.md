@@ -31,6 +31,7 @@ To install psycopg2: pip3 install psycopg2
 ## Running the tests
 
 To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/how-to-open-a-github-repository-in-vs-code-online/)
+To run code: python3 main.py
 
 ### Break down into end to end tests
 
