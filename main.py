@@ -11,20 +11,39 @@ def get_db_connection():
 
 @Lasertag.route('/')
 def home():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM player;')
-    players = cur.fetchall()
-    cur.close()
-    conn.close()
-    return render_template('PlayerEntryScreen.html', player=players)
+    return render_template('PlayerEntryScreen.html')
 
 @Lasertag.route('/GamePlayScreen', methods=['GET','POST'])
 def GamePlayScreen():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT codename FROM player WHERE id = 1;')
+    result1 = cur.fetchall()
+    for x in result1:
+        players1 = x[0]
+    cur.execute('SELECT codename FROM player WHERE id = 2;')
+    result2 = cur.fetchall()
+    for x in result2:
+        players2 = x[0]
+    cur.close()
     if request.method == 'POST':
         return redirect(url_for('index'))
-    return render_template('GamePlayScreen.html')
+    return render_template('GamePlayScreen.html', player1=players1, player2=players2)
 
+@Lasertag.route('/PlayerEntryScreen', methods=['GET','POST'])
+def DBInsert():
+    if request.method == 'POST':
+        fn = request.form['player-1-fn']
+        ln = request.form['player-1-ln']
+        cn = request.form['player-1-cn']
+    print(fn, ln ,cn)
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO player (first_name, last_name, codename) VALUES(%s,%s,%s)', (fn,ln,cn))
+    cur.close()
+    conn.commit()
+    conn.close()
+    return render_template("PlayerEntryScreen.html")
 
 if __name__ == '__main__':
     Lasertag.run()
