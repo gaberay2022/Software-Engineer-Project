@@ -25,6 +25,20 @@ def GamePlayScreen():
         return redirect(url_for('index'))
     return render_template('GamePlayScreen.html')
 
+@Lasertag.route('/PlayerEntryScreen', methods=['GET','POST'])
+def DBInsert():
+    if request.method == 'POST':
+        fn = request.form['player-1-fn']
+        ln = request.form['player-1-ln']
+        cn = request.form['player-1-cn']
+    print(fn, ln ,cn)
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('INSERT INTO player (first_name, last_name, codename) VALUES(%s,%s,%s)', (fn,ln,cn))
+    cur.close()
+    conn.commit()
+    conn.close()
+    return render_template("PlayerEntryScreen.html")
 
 if __name__ == '__main__':
     Lasertag.run()
