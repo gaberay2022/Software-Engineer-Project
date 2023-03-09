@@ -12,6 +12,7 @@
   animation-name: fadeOut;
   animation-duration: 6s;
   opacity: 0%;
+  
 }
 
 @keyframes fadeOut {
@@ -23,21 +24,13 @@
   }
 }
 
-/* Set the background images of the body element */
-body {
-  background-image: url('R_Back.png'), url('G_Back.png');
-  background-repeat: no-repeat;
-  background-position: left top, right top;
-  background-size: 720px 1200px;
-}
-
 .form-wrapper{
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .R_tableID,
 .G_tableID { 
-  flex: 1;
-  margin-right: 10px;
+    flex: 1;
+    margin-right: 10px;
 }
