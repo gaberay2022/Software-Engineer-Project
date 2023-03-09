@@ -4,7 +4,7 @@ body {
     background-image: url('R_Back.png'), url('G_Back.png');
     background-repeat: no-repeat;
     background-position: left top, right top;
-    background-size: 720px 1200px;
+    background-size: 50vw 100vh, 50vw 100vh;
   }
 
 .form-wrapper{
