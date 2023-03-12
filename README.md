@@ -68,10 +68,9 @@ We use ["Versioning control"](http://link) for version control
 
 ## Authors
 
-* **Gabriel Garcia** - *Team Lead* - [Gabriel-Garcia---Testing-Branch]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/Gabriel-Garcia---Testing-Branch))
-* **Ryan Cazares** - *Full-stack* - [RyanCazares]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/main))
-* **Abraham Mitchell** - *Front-end/UI* - [ATM-Test]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/ATM-Test))
-* **Lizbet Rivera** - *Front-end/UI* - [LizbetRivera]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/main))
-* **Marvin Violantes** - *Back-end/Database* - [MarvinBranch]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/MarvinBranch))
-* **Santiago Dorado** - *Back-end/Database* - [santiago-test]([https://link](https://github.com/gaberay2022/Software-Engineer-Project/tree/santiago-test))
-
+* **Gabriel Garcia** - *Team Lead* - [Gabriel-Garcia---Testing-Branch](https://github.com/gaberay2022/Software-Engineer-Project/tree/Gabriel-Garcia---Testing-Branch)
+* **Ryan Cazares** - *Full-stack* - [RyanCazares](https://github.com/gaberay2022/Software-Engineer-Project/tree/main)
+* **Abraham Mitchell** - *Front-end/UI* - [ATM-Test](https://github.com/gaberay2022/Software-Engineer-Project/tree/ATM-Test)
+* **Lizbet Rivera** - *Front-end/UI* - [LizbetRivera](https://github.com/gaberay2022/Software-Engineer-Project/tree/main)
+* **Marvin Violantes** - *Back-end/Database* - [MarvinBranch](https://github.com/gaberay2022/Software-Engineer-Project/tree/MarvinBranch)
+* **Santiago Dorado** - *Back-end/Database* - [santiago-test](https://github.com/gaberay2022/Software-Engineer-Project/tree/santiago-test)
