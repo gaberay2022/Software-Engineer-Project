@@ -12,12 +12,55 @@
 
 <body>
 <h2></h2>
-<div class = "form-wrapper">
-<p style="font-family:'Courier New'; color: red; font-size: x-large; align-self: flex-start;">RED TEAM</p>
-<p style="font-family: 'Courier New'; color:red">{{player[0]}}</p>
-<p style="font-family:'Courier New'; color: lightgreen; font-size: x-large;">GREEN TEAM</p>
-<p style="font-family: 'Courier New'; color: lightgreen;">{{player[1]}}</p>
 
+<div class = "form-wrapper">
+<p style="font-family:'Courier New'; color: red; font-size: x-large; align-self: flex-start;">RED TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
+<p style="font-family:'Courier New'; color: lightgreen; font-size: x-large;">GREEN TEAM<br>SCORE: 000<br>TEAM MEMBERS:<br>{{player[1]}}</p>
 </div>
+
+<div class = "countdown-section">
+    <p style="color: white; font-family:'Courier New'">Time Left:</p>
+    <p style="color: white; font-family:'Courier New'" id ="countdown"></p>
+</div>
+
+<div class="Play-by-Play">
+    <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
+</div>
+
+
+
+<script>
+    function countdown() {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    if (time == -1) {
+        clearTimeout(timerId);
+        if(sixTimer == "false"){
+            sixMinTimer();
+        }
+    } 
+    else {
+        elem.innerHTML = `${minutes}:${seconds}`;;
+        time--;
+    }
+}
+
+function sixMinTimer(){
+    sixTimer = "true"
+    startingMin = 6;
+    time = startingMin * 60;
+    timerId = setInterval(countdown, 1000);
+}
+
+var elem = document.getElementById('countdown');   
+startingMin = 0.5;
+time = startingMin * 60;
+timerId = setInterval(countdown, 1000);
+sixTimer = "false"
+</script>
+
+
 </body>
 </html>

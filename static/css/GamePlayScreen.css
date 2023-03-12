@@ -17,3 +17,23 @@ body {
     flex: 1;
     margin-right: 10px;
 }
+
+.countdown-section{
+    position: absolute;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.Play-by-Play{
+    position: fixed;
+    text-align: center;
+    border: 3px solid white;
+    height: 200px;
+    width:  300px;
+    bottom: 0;
+    right: 0;
+}
