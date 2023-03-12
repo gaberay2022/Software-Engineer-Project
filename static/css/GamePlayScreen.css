@@ -5,11 +5,35 @@ body {
     background-repeat: no-repeat;
     background-position: left top, right top;
     background-size: 50vw 100vh, 50vw 100vh;
-  }
+}
 
-.form-wrapper{
+.red_team_text {
+    font-family:'Courier New'; 
+    color: red; 
+    font-size: x-large; 
+    align-self: flex-start;
+}
+
+.green_team_text {
+    font-family:'Courier New'; 
+    color: lightgreen; 
+    font-size: x-large;
+}
+
+.flex-teams {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.flex-child {
+flex: 1;
+margin-right: 50px;
+}
+
+.flex-child:first-child {
+margin-right: 20px;
 }
 
 .R_tableID,
@@ -18,7 +42,7 @@ body {
     margin-right: 10px;
 }
 
-.countdown-section{
+.countdown-section {
     position: absolute;
     left: 50%;
     margin-top: -50px;
