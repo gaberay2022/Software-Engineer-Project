@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
 
-
+i=1;
 Lasertag = Flask(__name__)
 
 def get_db_connection():
@@ -30,20 +30,31 @@ def GamePlayScreen():
 
 @Lasertag.route('/PlayerEntryScreen', methods=['GET','POST'])
 def DBInsert():
-    if request.method == 'POST':
-        fn = request.form['player-1-fn']
-        ln = request.form['player-1-ln']
-        cn = request.form['player-1-cn']
-        print(fn, ln, cn)
-    if (not fn) or (not ln) or (not cn):
-        return render_template("PlayerEntryScreen.html")
-    else:
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute('INSERT INTO player (first_name, last_name, codename) VALUES(%s,%s,%s)', (fn,ln,cn))
-        cur.close()
-        conn.commit()
-        conn.close()
+    fn=[]
+    ln=[]
+    cn=[]
+    for i in range(1,7):
+        if request.method == 'POST':
+            fname = request.form[f'player-{i}-fn']
+            lname = request.form[f'player-{i}-ln']
+            cname = request.form[f'player-{i}-cn']
+            fn.append(fname)
+            ln.append(lname)
+            cn.append(cname)
+    for i in range(len(fn)):
+        if (not fn[i]) or (not ln[i]) or (not cn[i]):
+            pass;
+        else:
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute('INSERT INTO player (first_name, last_name, codename) VALUES(%s,%s,%s)', (fn[i],ln[i],cn[i]))
+            cur.close()
+            conn.commit()
+            conn.close()
+    for i in range(len(fn)):
+        fn.pop
+        ln.pop
+        cn.pop
         return render_template("PlayerEntryScreen.html")
 
 if __name__ == '__main__':
