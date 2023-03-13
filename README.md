@@ -4,7 +4,7 @@ A simulation of the original Photon lasertag system.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
@@ -31,40 +31,8 @@ To install psycopg2: pip3 install psycopg2
 ## Running the tests
 
 To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/how-to-open-a-github-repository-in-vs-code-online/)
+
 To run code: python3 main.py
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-
-
-### And coding style tests
-
-Explain what these tests test and why
-
-
-You can specify the programming language of the code block by adding the language name after the opening backticks, like this:
-
-```python
-# Example Code
-print("Hello, World!")
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system.
-
-## Built With
-
-* [Heroku](http://link) - data base used
-
-
-
-## Versioning
-
-We use ["Versioning control"](http://link) for version control
-
 
 ## Authors
 
