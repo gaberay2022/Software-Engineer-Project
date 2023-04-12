@@ -45,6 +45,7 @@
         clearTimeout(timerId);
         if(sixTimer == "false"){
             sixMinTimer();
+            player_actions();
         }
     } 
     else {
@@ -52,6 +53,31 @@
         time--;
     }
 }
+
+function get_player_who_shot() {
+    //const player_ID = "from_python_file";
+    //const player_points = player_ID(score) + 1 to keep track of individual score increments
+}
+
+function get_player_hit() { 
+    //const player_ID = "from_python_file";
+    //wait 1000 ms to ensure no double counting points
+}
+
+function player_actions() {
+    //listen to shot fired from python file
+    //assign that shot fired to player get_player_who_shot();
+    //assign player that got hit get_player_hit();
+
+    //find out what team player who fired shot was on and increment team score
+
+    
+
+    
+    
+    
+}
+
 
 function sixMinTimer(){
     sixTimer = "true"
