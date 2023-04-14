@@ -31,6 +31,9 @@
 
 <div class="Play-by-Play">
     <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
+    <p style="color: white; font-family:'Courier New'" id ="playerWhoShot"></p>
+    <p style="color: white; font-family:'Courier New'"> shot </p>
+    <p style="color: white; font-family:'Courier New'" id = "playerHit"></p>
 </div>
 
 
@@ -54,36 +57,60 @@
     }
 }
 
-function get_player_who_shot() {
-    //const player_ID = "from_python_file";
-    //const player_points = player_ID(score) + 1 to keep track of individual score increments
-}
-
-function get_player_hit() { 
-    //const player_ID = "from_python_file";
-    //wait 1000 ms to ensure no double counting points
-}
-
-function player_actions() {
-    //listen to shot fired from python file
-    //assign that shot fired to player get_player_who_shot();
-    //assign player that got hit get_player_hit();
-
-    //find out what team player who fired shot was on and increment team score
-
-    
-
-    
-    
-    
-}
-
-
 function sixMinTimer(){
     sixTimer = "true"
     startingMin = 6;
     time = startingMin * 60;
     timerId = setInterval(countdown, 1000);
+}
+
+
+
+function get_player_fired(id){ 
+    //variable to return player that fired the shot
+    var playerFired = "";
+
+    //do XML request to the database
+    var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            playerFired = this.codename; //return the codename of player to the return string value
+        }
+      };
+      xhr.open("GET", "http://your-server-url-here.com/get-data?id=" + id, true); //I DONT KNOW THE SERVER URL OR HOW TO ACCESS IT BUT HERE IS A GENERAL QUERY AS PLACEHOLDER
+      xhr.send();
+
+      return playerFired;
+}
+
+function get_player_shot(id){ 
+    //variable to return player that fired the shot
+    var playerShot = "";
+
+    //do XML request to the database
+    var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            playerShot = this.codename; //return the codename of player to the return string value
+        }
+      };
+      xhr.open("GET", "http://your-server-url-here.com/get-data?id=" + id, true);
+      xhr.send();
+
+      return playerShot;
+}
+
+function player_actions(){
+    //----------------HERE IS THE PLAYER ID STRING SENT FROM THE PYTHON FILE-----------------------
+    //var message = input from python file; 
+    
+    //split up message and change to int to grab ID with
+    const playersArray = message.split(":");
+    var id_player_fired = parseInt(playersArray[0]);
+    var id_player_shot = parseInt(playersArray[1]);
+    
+    document.getElementById("playerWhoShot") = get_player_fired(id_player_fired);
+    document.getElementById("playerHit") = get_player_shot(id_player_shot);    
 }
 
 var elem = document.getElementById('countdown');   
