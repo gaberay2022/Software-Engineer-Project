@@ -10,8 +10,6 @@
     </div>
     <h1>Enter Player</h1>
     <form action='PlayerEntryScreen' method="POST">
-      <label for="lobby-id">Lobby ID:</label>
-      <input type="text" id="lobby-id" name="lobby-id"><br><br>
       <h3>Player 1</h3>
       <label for="player-1-fn">First Name:</label>
       <input type="text" id="player-1-fn" name="player-1-fn">
@@ -56,7 +54,12 @@
       <input type="text" id="player-6-cn" name="player-6-cn"><br><br>
       <input type="submit" value="Submit">
     </form>
-    <button onclick="location.href='{{ url_for('GamePlayScreen') }}'">Start Game</button>
+    <br><br>
+    <form action="{{ url_for('GamePlayScreen')}}" method="POST">
+    <label for="lobby-id">Lobby ID:</label>
+    <input type="text" id="lobby-id" name="lobby-id"><br><br>
+    <button type="submit">Start Game</button>
+    </form>
 </body>
 </html>
 <script>
