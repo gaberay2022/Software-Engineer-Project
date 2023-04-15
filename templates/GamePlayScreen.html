@@ -1,146 +1,83 @@
 <!-- lizbet rivera created basic player entry page -->
 
-
 <!DOCTYPE html>
 <html>
 
-
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
-<title>Entry Terminal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
+    <title>Entry Terminal</title>
 </head>
 
 <body>
-<h2></h2>
+    <h2></h2>
 
-<div class="flex-teams">
-    <div class="flex-child red-team">
-        <p class="red_team_text">RED
-            TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
+    <div class="flex-teams">
+        <div class="flex-child red-team">
+            <p class="red_team_text">RED
+                TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
+        </div>
+        <div class="flex-child green-team">
+            <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
+                MEMBERS:<br>{{player[1]}}</p>
+        </div>
     </div>
-    <div class="flex-child green-team">
-        <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
-            MEMBERS:<br>{{player[1]}}</p>
+
+    <div class="countdown-section">
+        <p style="color: white; font-family:'Courier New'">Time Left:</p>
+        <p style="color: white; font-family:'Courier New'" id="countdown"></p>
     </div>
-</div>
 
-<div class = "countdown-section">
-    <p style="color: white; font-family:'Courier New'">Time Left:</p>
-    <p style="color: white; font-family:'Courier New'" id ="countdown"></p>
-</div>
+    <div class="Play-by-Play">
+        <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
+    </div>
 
-<div class="Play-by-Play">
-    <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
-</div>
+    <audio id="myAudio" controls autoplay>
+        <source src="/Users/abrahammitchell/Dropbox/Mac/Documents/Software Engineering/Software-Engineer-Project/templates/Track01.mp3" type="audio/mpeg">
+        <p id="demo"></p>
+    </audio>
 
+    <script>
+        // Function to handle the countdown
+        function countdown() {
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
 
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-<script>
-// Function to handle the countdown
-    function countdown() {
-        const minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        play_Music(Music_Randomizer);
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        if (time == -1) {
-            clearTimeout(timerId);
-            if(sixTimer == "false"){
-                sixMinTimer();
+            if (time == -1) {
+                clearTimeout(timerId);
+                if (sixTimer == "false") {
+                    sixMinTimer();
+                }
+            } else {
+                elem.innerHTML = `${minutes}:${seconds}`;
+                time--;
+                // Play audio when countdown begins
+                if (time == (startingMin * 60) - 1) {
+                    playMusic();
+                }
             }
-        } 
-        else {
-            elem.innerHTML = `${minutes}:${seconds}`;;
-            time--;
         }
-    }
 
-    function sixMinTimer(){
-        sixTimer = "true"
-        startingMin = 6;
+        function sixMinTimer() {
+            sixTimer = "true"
+            startingMin = 6;
+            time = startingMin * 60;
+            timerId = setInterval(countdown, 1000);
+        }
+
+        function playMusic() {
+            var x = document.getElementById("myAudio");
+            x.play();
+        }
+
+        var elem = document.getElementById('countdown');
+        startingMin = 0.5;
         time = startingMin * 60;
         timerId = setInterval(countdown, 1000);
-    }
-
-    // Big chunck for random number genration and music playing function
-    function Music_Randomizer(seed) {
-        let m_w = seed;
-        let m_z = 987654321;
-          
-        // Returns a random float between 0 and 1
-        return function() {
-            m_z = (36969 * (m_z & 65535) + (m_z >> 16)) & 0xFFFFFFFF;
-            m_w = (18000 * (m_w & 65535) + (m_w >> 16)) & 0xFFFFFFFF;
-            let result = ((m_z << 16) + m_w) & 0xFFFFFFFF;
-            result /= 0xFFFFFFFF;
-            return result;
-        };
-    }
-      
-    // Generate a random seed value between 1 and 10000
-    let minSeed = 1;
-    let maxSeed = 10000;
-    let randomSeed = Math.floor(Math.random() * (maxSeed - minSeed + 1)) + minSeed;
-      
-    // Seed the PRNG with the randomly generated seed value
-    let myRandom = Music_Randomizer(randomSeed);
-      
-    // Generate random numbers in the range 1 to 8 (inclusive), excluding 5
-    function getRandomNumber() {
-        let num = Math.floor(myRandom() * 8) + 1;
-        if (num >= 5) {
-            num++; // Skip 5
-        }
-        return num;
-    }
-
-    function play_Music(Music_Randomizer)
-    {
-        // Create an audio element
-        const xxx = getRandomNumber();
-        const audioElement1 = new Audio();
-        const audioElement2 = new Audio();
-        const audioElement3 = new Audio();
-        const audioElement4 = new Audio();
-        const audioElement6 = new Audio();
-        const audioElement7 = new Audio();
-        const audioElement8 = new Audio();
-
-        // Set the source URL of the MP3 file
-        audioElement1.src = './Photon_Music/Track01.mp3';
-        audioElement2.src = './Photon_Music/Track02.mp3';
-        audioElement3.src = './Photon_Music/Track03.mp3';
-        audioElement4.src = './Photon_Music/Track04.mp3';
-        audioElement6.src = './Photon_Music/Track06.mp3';
-        audioElement7.src = './Photon_Music/Track07.mp3';
-        audioElement8.src = './Photon_Music/Track08.mp3';
-
-
-    // Play the audio
-    if(xxx == 1)
-        audioElement1.play();
-    if(xxx == 2)    
-        audioElement2.play();
-    if(xxx == 3)
-        audioElement3.play();
-    if(xxx == 4)
-        audioElement4.play();
-    if(xxx == 6)
-        audioElement6.play();
-    if(xxx == 7)
-        audioElement7.play();
-    if(xxx == 8)
-        audioElement8.play();
-  }
-  //----------------------------------------------------
-
-var elem = document.getElementById('countdown');   
-startingMin = 0.5;
-time = startingMin * 60;
-timerId = setInterval(countdown, 1000);
-sixTimer = "false"
-</script>
-
+        sixTimer = "false"
+    </script>
 
 </body>
+
 </html>
