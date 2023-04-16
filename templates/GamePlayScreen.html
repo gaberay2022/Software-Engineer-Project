@@ -31,9 +31,8 @@
         <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
     </div>
 
-    <audio id="myAudio" controls autoplay>
-        <source src="/Users/abrahammitchell/Dropbox/Mac/Documents/Software Engineering/Software-Engineer-Project/templates/Track01.mp3" type="audio/mpeg">
-        <p id="demo"></p>
+    <audio autoplay id="myAudio">
+        <source src="" type="audio/mpeg">
     </audio>
 
     <script>
@@ -65,10 +64,16 @@
             time = startingMin * 60;
             timerId = setInterval(countdown, 1000);
         }
-
+        const sound = new Audio('Mineral.mp3');
         function playMusic() {
-            var x = document.getElementById("myAudio");
-            x.play();
+            //var x = document.getElementById("myAudio");
+            //x.src = "/Users/abrahammitchell/Dropbox/Mac/Documents/Software Engineering/Software-Engineer-Project/Mineral.mp3";
+            //x.volume = 1.0;
+            //x.play();
+            
+            sound.play();
+
+            
         }
 
         var elem = document.getElementById('countdown');
