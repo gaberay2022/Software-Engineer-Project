@@ -35,10 +35,49 @@
     margin-right: 10px;
 }
 
-/* added a background image that fit the theme */
-.body {
-  background-image: url("entryBackground.jpeg");
-  background-color: #00000;
-  background-position: center;
+.player1 {
+  display: inline-block;
+  flex-direction: column;
+  vertical-align: middle;
+  font-family: 'Courier New';
+  margin: 20px;
+  border: 5px solid red;
+}
 
+.player2 {
+  display: inline-block;
+  flex-direction: column;
+  vertical-align: middle;
+  font-family: 'Courier New';
+  margin: 20px;
+  border: 5px solid green;
+}
+
+.container1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.container2{
+  display: flex;
+  justify-content: space-between;
+}
+ label{
+  display: block;
+ }
+
+.lobbyID {
+  font-family: 'Courier New';
+}
+
+input{
+  width: 300px;
+  margin: 2px;
+}
+
+
+/* added a background image that fit the theme */
+body {
+  background-image: url("entryBackground.jpeg");
+  background-position: center;
 }
