@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, jsonify
-from flask_socketio import SocketIO
 import psycopg2
 import threading
+from udp_socket import recieve
 from python_traffic_generator import generate_traffic
+import time
 
 i=1
+t1=threading.Thread(target=recieve)
+t2=threading.Thread(target=generate_traffic)
+
 Lasertag = Flask(__name__)
-Lasertag.config['SECRET_KEY'] = 'secret!'
-socketio=SocketIO(Lasertag)
 
 def get_db_connection():
     conn = psycopg2.connect("postgres://ospqdsgchpdlxv:119a2e98fbf353a9cbc03a25dbe4ed8cc8ff4d22fbc377e200399084507f7506@ec2-3-217-251-77.compute-1.amazonaws.com:5432/d4hsfg0607dsnf", sslmode = 'require') 
@@ -53,16 +55,16 @@ def LoadLobby():
     conn.close()
     return render_template('LobbyScreen.html', codename=cn)
 
-#working on setting up sockets
-# @socketio.on('generate_traffic')
-# def traffic_generator(data):
-#         red_team1 = data['red_team1']
-#         red_team2 = data['red_team2']
-#         green_team1 = data['green_team1']
-#         green_team2 = data['green_team2']
-#         count = data['count']
-#         generate_traffic(udp, red_team1, red_team2, green_team1, green_team2, count)
-#         return jsonify({'success': True})
+@Lasertag.route('/recieve_traffic')
+def recieve_traffic():
+    t1.start()
+    time.sleep(390)
+    t1.stop()
+
+@Lasertag.route('/generate_traffic')
+def traffic_generator():
+    t2.start()
+
 
 @Lasertag.route('/GamePlayScreen', methods=['GET','POST'])
 def GamePlayScreen():
@@ -130,4 +132,4 @@ def DBInsert():
         return render_template("PlayerEntryScreen.html")
 
 if __name__ == '__main__':
-    socketio.run(Lasertag)
+    Lasertag.run()

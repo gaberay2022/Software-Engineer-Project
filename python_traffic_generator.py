@@ -3,23 +3,11 @@ import random
 import time
 
 #should work just working on receiving packages
-bufferSize = 1024
-serverAddressPort = ("127.0.0.1", 5001)
+traffic = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+traffic.bind("127.0.0.1", 7501)
 
 
 def generate_traffic(red1, red2, green1, green2, counter):
-	
-    # Get the request data
-	data = request.json
-	red1 = data['red1']
-	red2 = data['red2']
-	green1 = data['green1']
-	green2 = data['green2']
-	counter = data['counter']
-
-	# Create datagram socket
-	udp = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	serverAddressPort = ("127.0.0.1", 5001)
 
 	# counter number of events, random player and order
 	i = 1
@@ -41,6 +29,6 @@ def generate_traffic(red1, red2, green1, green2, counter):
 
 		print(message)
 		i += 1
-		udp.sendto(str.encode(str(message)), serverAddressPort)
-		time.sleep(random.randint(1,3))
+		traffic.sendto(f"{message}".encode(), ("127.0.0.1", 7501))
+		time.sleep(random.randint(1,3)) 
 

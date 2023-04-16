@@ -60,13 +60,8 @@
 
 
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.min.js"></script>
-<script type="text/javascript">
-    var socket = io.connect('http://' + document.domain + ':' + location.port);
-    socket.on('update', function(message) {
-        console.log(message);
-        // Add code here to update the HTML with the message
-    });
+<script>
+    fetch('/recieve_traffic')
     function countdown() {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;
@@ -90,6 +85,7 @@ function sixMinTimer(){
     startingMin = 6;
     time = startingMin * 60;
     timerId = setInterval(countdown, 1000);
+    fetch('/generate_traffic')
 }
 
 function get_player_fired(id){ 
