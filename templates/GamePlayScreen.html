@@ -1,5 +1,3 @@
-<!-- lizbet rivera created basic player entry page -->
-
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +30,7 @@
     </div>
 
     <audio autoplay id="myAudio">
-        <source src="" type="audio/mpeg">
+        <source src="https://www.example.com/Mineral.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -59,28 +57,22 @@
         }
 
         function sixMinTimer() {
-            sixTimer = "true"
+            sixTimer = "true";
             startingMin = 6;
             time = startingMin * 60;
             timerId = setInterval(countdown, 1000);
         }
-        const sound = new Audio('Mineral.mp3');
-        function playMusic() {
-            //var x = document.getElementById("myAudio");
-            //x.src = "/Users/abrahammitchell/Dropbox/Mac/Documents/Software Engineering/Software-Engineer-Project/Mineral.mp3";
-            //x.volume = 1.0;
-            //x.play();
-            
-            sound.play();
 
-            
+        const sound = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/main/Mineral.mp3'); // Replace with the actual URL of your MP3 file
+        function playMusic() {
+            sound.play();
         }
 
         var elem = document.getElementById('countdown');
         startingMin = 0.5;
         time = startingMin * 60;
         timerId = setInterval(countdown, 1000);
-        sixTimer = "false"
+        sixTimer = "false";
     </script>
 
 </body>
