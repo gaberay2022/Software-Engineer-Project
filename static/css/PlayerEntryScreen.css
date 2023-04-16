@@ -34,3 +34,11 @@
     flex: 1;
     margin-right: 10px;
 }
+
+/* added a background image that fit the theme */
+.body {
+  background-image: url('entryBackground.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
