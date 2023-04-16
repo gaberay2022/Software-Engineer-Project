@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
     <title>Entry Terminal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
 </head>
 
 <body>
@@ -33,6 +34,7 @@
         <source src="https://www.example.com/Mineral.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
     <script>
         // Function to handle the countdown
         function countdown() {
@@ -56,6 +58,29 @@
             }
         }
 
+
+        // Seed generator function
+        function seedGenerator() {
+            // Generate a random seed using the seedrandom library with a specific seed value
+            const seed = seedrandom(new Date().getTime().toString());
+            return seed;
+        }
+
+        // Random number generator function for numbers 1 to 8, excluding 5
+        function trackGenerator() {
+            const seed = seedGenerator(); // Generate seed
+            let num = Math.floor(seed() * 8) + 1; // Generate random number between 1 and 8
+            let attempts = 0; // Counter for number of re-rolls
+
+            // Avoid number 5 by re-rolling if 5 is generated, with a limit of 10 re-rolls
+            while (num === 5 && attempts < 10) {
+                num = Math.floor(seed() * 8) + 1;
+                attempts++;
+            }
+
+            return num;
+        }
+
         function sixMinTimer() {
             sixTimer = "true";
             startingMin = 6;
@@ -63,9 +88,43 @@
             timerId = setInterval(countdown, 1000);
         }
 
-        const sound = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/main/Mineral.mp3'); // Replace with the actual URL of your MP3 file
+
         function playMusic() {
-            sound.play();
+            const Track01 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track01.mp3');
+            //const Track02 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track02.mp3');
+            //const Track03 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track03.mp3');
+            //const Track04 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track04.mp3');
+            //const Track06 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track06.mp3');
+            //const Track07 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track07.mp3');
+            //const Track08 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track08.mp3');
+            const trackNumber = trackGenerator();
+            console.log(trackNumber);
+            switch (trackNumber) {
+                case 1:
+                    console.log(1);
+                    break;
+                case 2:
+                    console.log(2);
+                    break;
+                case 3:
+                    console.log(3);
+                    break;
+                case 4:
+                    console.log(4);
+                    break;
+                case 6:
+                    console.log(6);
+                    break;
+                case 7:
+                    console.log(7);
+                    break;
+                case 8:
+                    console.log(8);
+                    break;
+                default:
+                    Track01.play();
+                    break;
+            }
         }
 
         var elem = document.getElementById('countdown');
