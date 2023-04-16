@@ -1,6 +1,6 @@
 # Laser Tag Project 
 
-A simulation of the original Photon lasertag system. 
+A simulation of the original Photon lasertag system developed in 1984 by George A. Carter III. All source code, as well as the two background image files, is available via this repository. The mp3 files used during gameplay are located on a [seperate repository](https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io) and do not need to be downloaded in order to play during simulation.
 
 ## Getting Started
 
