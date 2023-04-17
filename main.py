@@ -51,41 +51,36 @@ def DBInsert():
         cn.pop()
         return render_template("PlayerEntryScreen.html")
 
+@Lasertag.route('/LobbyScreen')
+def LobbyScreen():
+    return render_template("LobbyScreen.html")
 
-@Lasertag.route('/LobbyScreen', methods=['GET', 'POST'])
+@Lasertag.route('/LobbyScreenSubmit', methods=['GET', 'POST'])
 def LoadLobby():
-    fn=[]
-    ln=[]
+    cn=[]
     red='Red'
     green='Green'
     for i in range(1,7):
         if request.method == 'POST':
-            fname = request.form[f'player-{i}-fn']
-            lname = request.form[f'player-{i}-ln']
+            cname = request.form[f'player-{i}-cn']
             Lkey = request.form['lobby-id']
-            fn.append(fname)
-            ln.append(lname)
-    for i in range(len(fn)):
-        if (not fn[i]) or (not ln[i]):
-            pass;
+            cn.append(cname)
+    for i in range(len(cn)):
+        if (not cn[i]):
+            pass
         else:
             conn = get_db_connection()
             cur = conn.cursor()
-            if (i<11):
-                cur.execute('UPDATE player SET Lobby_Key=%s, Team=%s WHERE first_name=%s AND last_name=%s', (Lkey, red, fn[i],ln[i]))
+            if (i<3):
+                cur.execute('UPDATE player SET lobby_key=%s, team=%s WHERE codename=%s', (Lkey, red, cn[i]))
+                conn.commit()
             else:
-                cur.execute('UPDATE player SET Lobby_Key=%s, Team=%s WHERE first_name=%s AND last_name=%s', (Lkey, green, fn[i],ln[i]))
-    cn=[]
-    for i in range(len(fn)):
-        fn.pop()
-        ln.pop()
-        cur.execute('SELECT codename FROM player WHERE first_name=%s AND last_name=%s', (fn[i],ln[i]))
-        row = cur.fetchone()
-        if row:
-            cn.append(row[0])
-    conn.commit()
-    conn.close()
-    return render_template('LobbyScreen.html', codename=cn)
+                cur.execute('UPDATE player SET lobby_key=%s, team=%s WHERE codename=%s', (Lkey, green, cn[i]))
+                conn.commit()
+            conn.close()
+    for i in range(len(cn)):
+        cn.pop()
+    return render_template('LobbyScreen.html')
 
 @Lasertag.route('/GamePlayScreen', methods=['GET','POST'])
 def GamePlayScreen():
@@ -94,11 +89,13 @@ def GamePlayScreen():
     red_team=[]
     green_team=[]
     players=[]
+    first_half=[]
+    second_half=[]
     
     conn = get_db_connection()
     cur = conn.cursor()
     if Lkey:
-        cur.execute('SELECT codename, Team FROM player')
+        cur.execute('SELECT codename, team FROM player WHERE lobby_key=%s',(Lkey,))
         for row in cur.fetchall():
             cn = row[0]
             team = row[1]
@@ -107,6 +104,20 @@ def GamePlayScreen():
                 red_team.append(cn)
             else:
                 green_team.append(cn)
+        for i in range(len(red_team)):
+            if(i == 0):
+                with open("files/redTeam.txt", "w") as f:
+                    f.write(red_team[i])
+            else:
+                with open("files/redTeam.txt", "a") as f:
+                    f.write("," + red_team[i])
+        for i in range (len(green_team)):
+            if(i == 0):
+                with open("files/greenTeam.txt", "w") as f:
+                    f.write(green_team[i])
+            else:
+                with open("files/greenTeam.txt", "a") as f:
+                    f.write("," + green_team[i])
     else:    
         cur.execute('SELECT codename FROM player')
         result1 = cur.fetchall()
@@ -115,34 +126,18 @@ def GamePlayScreen():
         half_len = len(players)//2
         first_half = players[:half_len]
         second_half = players[half_len:]
-    for i in range(len(first_half)):
-        if(i == 0):
-            if(red_team):
-                with open("files/redTeam.txt", "w") as f:
-                    f.write(red_team[i])
-            else:
+        for i in range(len(first_half)):
+            if(i == 0):
                 with open("files/redTeam.txt", "w") as f:
                     f.write(first_half[i])
-        else:
-            if(red_team):
-                with open("files/redTeam.txt", "a") as f:
-                    f.write("," + red_team[i])
             else:
                 with open("files/redTeam.txt", "a") as f:
                     f.write("," + first_half[i])
 
-    for i in range (len(second_half)):
-        if(i == 0):
-            if(green_team):
-                with open("files/greenTeam.txt", "w") as f:
-                    f.write(green_team[i])
-            else:
+        for i in range (len(second_half)):
+            if(i == 0):
                 with open("files/greenTeam.txt", "w") as f:
                     f.write(second_half[i])
-        else:
-            if(green_team):
-                with open("files/greenTeam.txt", "a") as f:
-                    f.write("," + green_team[i])
             else:
                 with open("files/greenTeam.txt", "a") as f:
                     f.write("," + second_half[i])

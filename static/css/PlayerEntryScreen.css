@@ -34,3 +34,110 @@
     flex: 1;
     margin-right: 10px;
 }
+
+.player1 {
+  display: inline-block;
+  flex-direction: column;
+  vertical-align: middle;
+  font-family: 'Courier New';
+  margin: 20px;
+  border: 5px solid red;
+}
+
+.player2 {
+  display: inline-block;
+  flex-direction: column;
+  vertical-align: middle;
+  font-family: 'Courier New';
+  margin: 20px;
+  border: 5px solid green;
+}
+
+.container1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.container2{
+  display: flex;
+  justify-content: space-between;
+}
+ label{
+  display: block;
+ }
+
+.lobbyID {
+  font-family: 'Courier New';
+}
+
+input{
+  width: 300px;
+  margin: 2px;
+}
+
+#Lobby_btn {
+  font-family: 'Courier New';
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: white;
+  background: #449e48;
+  line-height: 1.15;
+  font-size: 16px;
+}
+
+#Lobby_btn:hover {
+  transition: all .1s ease;
+  background-color: #3d8c40; 
+}
+
+#start_game_btn {
+  font-family: 'Courier New';
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: white;
+  background: #449e48;
+  line-height: 1.15;
+  font-size: 16px;
+}
+
+#start_game_btn:hover {
+  transition: all .1s ease;
+  background-color: #3d8c40; 
+}
+
+#enter_players_btn {
+  font-family: 'Courier New';
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 12px 24px;
+  border: 0;
+  color: white;
+  background: #0062cc;
+  line-height: 1.15;
+  font-size: 16px;
+}
+
+#enter_players_btn:hover {
+  transition: all .1s ease;
+  background-color: #0055b3; 
+}
+
+
+/* added a background image that fit the theme */
+body {
+  background-image: url("entryBackground.jpeg");
+  background-position: center;
+}
