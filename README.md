@@ -32,7 +32,7 @@ To install psycopg2: pip3 install psycopg2
 
 To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/how-to-open-a-github-repository-in-vs-code-online/)
 
-To run code: python3 main.py
+To run code: `python3 main.py` or `flask --app main run`
 
 ## Authors
 
