@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
 <title>Entry Terminal</title>
@@ -12,34 +11,34 @@
 
 <body>
 <h2></h2>
-<p>{{ message }}</p>
+<div id="messages"></div>
 <div class="flex-teams">
     <div class="flex-child red-team">
         <p class="red_team_text">RED
-            TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>
+            TEAM<br>SCORE:<span id="red_team_score">0</span><br>TEAM MEMBERS:<br>
             <ul class="red_team_text">
                 {% if red_team %}
                     {% for name in red_team %}
-                        <p>{{ name }}</p>
+                        <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
                     {% endfor %}
                 {% else %}
                     {% for name in fh %}
-                    <p>{{ name }}</p>
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
                     {% endfor %}
                 {% endif %}
             </ul>
     </div>
     <div class="flex-child green-team">
-        <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
+        <p class="green_team_text">GREEN TEAM<br>SCORE:<span id="green_team_score">0</span><br>TEAM
             MEMBERS:<br>
             <ul class="green_team_text">
                 {% if green_team %}
                     {% for name in green_team %}
-                        <p>{{ name }}</p>
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
                     {% endfor %}
                 {% else %}
                     {% for name in sh %}
-                    <p>{{ name }}</p>
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
                     {% endfor %}
                 {% endif %}
             </ul>
@@ -49,97 +48,134 @@
 <div class = "countdown-section">
     <p style="color: white; font-family:'Courier New'">Time Left:</p>
     <p style="color: white; font-family:'Courier New'" id ="countdown"></p>
+    <button class="gameover" id="gameOverButton" hidden="hidden" onclick=goToPlayerEntry()>Go To Lobby</button>
 </div>
 
 <div class="Play-by-Play">
     <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
-    <p style="color: white; font-family:'Courier New'" id ="playerWhoShot"></p>
-    <p style="color: white; font-family:'Courier New'"> shot </p>
-    <p style="color: white; font-family:'Courier New'" id = "playerHit"></p>
+    <div class="playerWhoShot" style="height: 150px; overflow-y: scroll; color: white; font-family:'Courier New'" id ="playerWhoShot"></div>
+    <!--p style="color: white; font-family:'Courier New'"> shot </p>
+    <p style="color: white; font-family:'Courier New'" id = "playerHit"></p>-->
 </div>
 
 
 
 <script>
-    fetch('/recieve_traffic')
-    function countdown() {
-    const minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+  time = 30
+  var Gameing = false;
+  var gameOver = false;
+  var timerID= setInterval(countdown,1000);
+  var redTeam = [];
+  var greenTeam= [];
+  function countdown()
+        {
+            if(time < 60)
+            {
+                document.getElementById('countdown').innerHTML = time + " Seconds";
+            }
+            else
+            {
+                document.getElementById('countdown').innerHTML = Math.floor(time/60) + " Minutes " + (time - (60 * Math.floor(time/60))) + " Seconds";
+            }
 
-    if (time == -1) {
-        clearTimeout(timerId);
-        if(sixTimer == "false"){
-            sixMinTimer();
-            player_actions();
+            time --;
+
+            if(time < 0)
+            {
+                if(!Gameing)
+                {
+                    time = 360;
+                    Gameing = true;
+                }
+                else
+                {
+                    document.getElementById('countdown').innerHTML = "Game Over!";
+                    gameOver = true;
+                    document.getElementById('gameOverButton').hidden = "";
+                    clearInterval(timerID);
+                }                
+            }
         }
-    } 
-    else {
-        elem.innerHTML = `${minutes}:${seconds}`;;
-        time--;
+    
+
+    var request = new XMLHttpRequest();
+    request.open('GET','sendRedTeam', true);
+    request.onload = function() {
+        var response = request.response;
+        redTeam = response.split(",");
     }
-}
+    request.send(null);
 
-function sixMinTimer(){
-    sixTimer = "true"
-    startingMin = 6;
-    time = startingMin * 60;
-    timerId = setInterval(countdown, 1000);
-    fetch('/generate_traffic')
-}
+    var request2 = new XMLHttpRequest();
+    request2.open('GET','sendGreenTeam', true);
+    request2.onload = function() {
+        var response2 = request2.response;
+        greenTeam = response2.split(",");
+    }
+    request2.send(null);
 
-function get_player_fired(id){ 
-    //variable to return player that fired the shot
-    var playerFired = "";
+    function getHits()
+        {
+            if(Gameing && !gameOver)
+            {
+                var request = new XMLHttpRequest();
+                request.open('GET','recieve_traffic', true);
+                request.onload = function() {
+                    var response = request.response;
+                    const dataArray = response.split(":");
+        
+                    if(dataArray[0] == 'red')
+                    {
+                        document.getElementById("playerWhoShot").innerHTML = document.getElementById("playerWhoShot").innerHTML + "<span style='color: rgb(245, 8, 8);'>" + redTeam[dataArray[1]] + "</span>" + " shot " + "<span style='color: rgb(11, 241, 80);'>" + greenTeam[dataArray[2]] + "</span>" + "<br>";
+                        document.getElementById(redTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(redTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML) + 10;
+                        document.getElementById("red_team_score").innerHTML = parseInt(document.getElementById("red_team_score").innerHTML) + 10;
 
-    //do XML request to the database
-    var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            playerFired = this.codename; //return the codename of player to the return string value
+                        document.getElementById(greenTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(greenTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML) - 10;
+                        document.getElementById("green_team_score").innerHTML = parseInt(document.getElementById("green_team_score").innerHTML) - 10;
+                        if(parseInt(document.getElementById("red_team_score").innerHTML) > parseInt(document.getElementById("green_team_score").innerHTML))
+                        {
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "1px";  
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";    
+                        }
+                        else if(parseInt(document.getElementById("red_team_score").innerHTML) == parseInt(document.getElementById("green_team_score").innerHTML))
+                        {
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";         
+                        }
+
+                    }
+                    else
+                    {
+                        document.getElementById("playerWhoShot").innerHTML = document.getElementById("playerWhoShot").innerHTML + "<span style='color: rgb(11, 241, 80);'>" + greenTeam[dataArray[1]] + "</span>" + " hit " + "<span style='color: rgb(245, 8, 8);'>" + redTeam[dataArray[2]] +"</span>" + "<br>";
+                        document.getElementById(greenTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(greenTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML) + 10;
+                        document.getElementById("green_team_score").innerHTML = parseInt(document.getElementById("green_team_score").innerHTML) + 10;
+
+                        document.getElementById(redTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(redTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML) - 10;
+                        document.getElementById("red_team_score").innerHTML = parseInt(document.getElementById("red_team_score").innerHTML) - 10;
+                        if(parseInt(document.getElementById("green_team_score").innerHTML) > parseInt(document.getElementById("red_team_score").innerHTML))
+                        {
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "1px";  
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";    
+                        }
+                        else if(parseInt(document.getElementById("green_team_score").innerHTML) == parseInt(document.getElementById("red_team_score").innerHTML))
+                        {
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";         
+                        }
+                    }
+                    var myDiv = document.getElementById("playerWhoShot");
+                    myDiv.scrollTop = myDiv.scrollHeight;
+                }
+                request.send(null);
+            }
+
+            setTimeout(getHits, 3000);
         }
-      };
-      xhr.open("GET", "http://your-server-url-here.com/get-data?id=" + id, true); //I DONT KNOW THE SERVER URL OR HOW TO ACCESS IT BUT HERE IS A GENERAL QUERY AS PLACEHOLDER
-      xhr.send();
 
-      return playerFired;
-}
-
-function get_player_shot(id){ 
-    //variable to return player that fired the shot
-    var playerShot = "";
-
-    //do XML request to the database
-    var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            playerShot = this.codename; //return the codename of player to the return string value
+        getHits();
+        function goToPlayerEntry(){
+            window.location.href = "/";
         }
-      };
-      xhr.open("GET", "http://your-server-url-here.com/get-data?id=" + id, true);
-      xhr.send();
-
-      return playerShot;
-}
-
-function player_actions(){
-    //----------------HERE IS THE PLAYER ID STRING SENT FROM THE PYTHON FILE-----------------------
-    //var message = input from python file; 
-    
-    //split up message and change to int to grab ID with
-    const playersArray = message.split(":");
-    var id_player_fired = parseInt(playersArray[0]);
-    var id_player_shot = parseInt(playersArray[1]);
-    
-    document.getElementById("playerWhoShot") = get_player_fired(id_player_fired);
-    document.getElementById("playerHit") = get_player_shot(id_player_shot);    
-}
-
-var elem = document.getElementById('countdown');   
-startingMin = 0.5;
-time = startingMin * 60;
-timerId = setInterval(countdown, 1000);
-sixTimer = "false"
 </script>
 
 

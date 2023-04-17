@@ -2,33 +2,28 @@ import socket
 import random
 import time
 
-#should work just working on receiving packages
-traffic = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-traffic.bind("127.0.0.1", 7501)
+counter = 400
+
+with open('./files/redTeam.txt') as f:
+	red_team = f.readlines()[0].split(',')
+with open ('./files/greenTeam.txt') as f:
+	green_team = f.readlines()[0].split(',')
+
+traffic = socket.socket(family = socket.AF_INET, type = socket.SOCK_DGRAM)
+traffic.bind(("127.0.0.1", 7501))
 
 
-def generate_traffic(red1, red2, green1, green2, counter):
+i=1
 
-	# counter number of events, random player and order
-	i = 1
-	while i < int(counter):
-		if random.randint(1,2) == 1:
-			redplayer = red1
-		else:
-			redplayer = red2
+# counter number of events, random player and order
+while i < int(counter):
+	if random.randint(1,2) == 1:
+		message = "red" + ":" + str(random.randint(0,len(red_team)-1)) + ":" + str(random.randint(0,len(green_team)-1))
+	else:
+		message = "green" + ":" + str(random.randint(0,len(green_team)-1)) + ":" + str(random.randint(0,len(red_team)-1))
 
-		if random.randint(1,2) == 1:
-			greenplayer = green1
-		else: 
-			greenplayer = green2
-
-		if random.randint(1,2) == 1:
-			message = redplayer + ":" + greenplayer
-		else:
-			message = greenplayer + ":" + redplayer
-
-		print(message)
-		i += 1
-		traffic.sendto(f"{message}".encode(), ("127.0.0.1", 7501))
-		time.sleep(random.randint(1,3)) 
+	print(message)
+	i += 1
+	traffic.sendto(str.encode(str(message)), ("127.0.0.1", 7500))
+	time.sleep(random.randint(1,3)) 
 

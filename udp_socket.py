@@ -1,19 +1,20 @@
 import socket
-import threading
 import queue
-
-messages = queue.Queue()
-traffic = []
-
-server=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server.bind(("127.0.0.1", 7500))
-
+import json
 
 def recieve():
-    while True:
-        try:
-            message = server.recvfrom(1024)
-            action = message.decode()
-            print(action)
-        except:
-            pass
+
+    server=socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    server.bind(("127.0.0.1", 7500))
+
+    message, addr = server.recvfrom(1024)
+
+    clientMsg = "Message from Client: {}".format(message)
+    clientIP  = "Client IP Address: {}".format(addr)
+
+    print(clientMsg)
+    print(clientIP)
+
+    server.sendto(str.encode("Hello"), addr)
+
+    return message.decode("utf-8")
