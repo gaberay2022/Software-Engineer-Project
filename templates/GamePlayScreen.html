@@ -10,129 +10,247 @@
 </head>
 
 <body>
-    <h2></h2>
-
-    <div class="flex-teams">
-        <div class="flex-child red-team">
-            <p class="red_team_text">RED
-                TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
-        </div>
-        <div class="flex-child green-team">
-            <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
-                MEMBERS:<br>{{player[1]}}</p>
-        </div>
+<h2></h2>
+<div id="messages"></div>
+<div class="flex-teams">
+    <div class="flex-child red-team">
+        <p class="red_team_text">RED
+            TEAM<br>SCORE:<span id="red_team_score">0</span><br>TEAM MEMBERS:<br>
+            <ul class="red_team_text">
+                {% if red_team %}
+                    {% for name in red_team %}
+                        <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
+                    {% endfor %}
+                {% else %}
+                    {% for name in fh %}
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+    </div>
+    <div class="flex-child green-team">
+        <p class="green_team_text">GREEN TEAM<br>SCORE:<span id="green_team_score">0</span><br>TEAM
+            MEMBERS:<br>
+            <ul class="green_team_text">
+                {% if green_team %}
+                    {% for name in green_team %}
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
+                    {% endfor %}
+                {% else %}
+                    {% for name in sh %}
+                    <p id="{{ name }}_score">{{ name }} - <span class="score">0</span></p>
+                    {% endfor %}
+                {% endif %}
+            </ul>
     </div>
 
-    <div class="countdown-section">
-        <p style="color: white; font-family:'Courier New'">Time Left:</p>
-        <p style="color: white; font-family:'Courier New'" id="countdown"></p>
-    </div>
+<div class = "countdown-section">
+    <p style="color: white; font-family:'Courier New'">Time Left:</p>
+    <p style="color: white; font-family:'Courier New'" id ="countdown"></p>
+    <button class="gameover" id="gameOverButton" hidden="hidden" onclick=goToPlayerEntry()>Go To Lobby</button>
+</div>
 
-    <div class="Play-by-Play">
-        <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
-    </div>
+<div class="Play-by-Play">
+    <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
+    <div class="playerWhoShot" style="height: 150px; overflow-y: scroll; color: white; font-family:'Courier New'" id ="playerWhoShot"></div>
+    <!--p style="color: white; font-family:'Courier New'"> shot </p>
+    <p style="color: white; font-family:'Courier New'" id = "playerHit"></p>-->
+</div>
 
-    <audio autoplay id="myAudio"> </audio>
+<audio autoplay id="myAudio"></audio>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
-    <script>
-        // Function to handle the countdown
-        function countdown() {
-            const minutes = Math.floor(time / 60);
-            let seconds = time % 60;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+<script>
+  time = 30
+  var Gameing = false;
+  var gameOver = false;
+  var timerID= setInterval(countdown,1000);
+  var redTeam = [];
+  var greenTeam= [];
 
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+    // Seed generator function
+    function seedGenerator() {
+        // Generate a random seed using the seedrandom library with a specific seed value
+        const seed =  new Math.seedrandom(new Date().getTime().toString());
+        return seed;
+    }
 
-            if (time == -1) {
-                clearTimeout(timerId);
-                if (sixTimer == "false") {
-                    sixMinTimer();
+    // Random number generator function for numbers 1 to 8, excluding 5
+    function trackGenerator() {
+        const seed = seedGenerator(); // Generate seed
+        let num = Math.floor(seed() * 8) + 1; // Generate random number between 1 and 8
+        let attempts = 0; // Counter for number of re-rolls
+
+        // Avoid number 5 by re-rolling if 5 is generated, with a limit of 10 re-rolls
+        while (num === 5 && attempts < 10) {
+            num = Math.floor(seed() * 8) + 1;
+            attempts++;
+        }
+        return num;
+    }
+
+    let trackNumber;
+
+    let Track01 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track01.mp3');
+    let Track02 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track02.mp3');
+    let Track03 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track03.mp3');
+    let Track04 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track04.mp3');
+    let Track06 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track06.mp3');
+    let Track07 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track07.mp3');
+    let Track08 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track08.mp3');
+
+    Track01.preload = 'auto';
+    Track02.preload = 'auto';
+    Track03.preload = 'auto';
+    Track04.preload = 'auto';
+    Track06.preload = 'auto';
+    Track07.preload = 'auto';
+    Track08.preload = 'auto';
+
+    function playMusic() {
+        trackNumber = trackGenerator();
+        console.log(trackNumber);
+        switch (trackNumber) {
+            case 1:
+                Track01.play();
+                break;
+            case 2:
+                Track02.play();
+                break;
+            case 3:
+                Track03.play();
+                break;
+            case 4:
+                Track04.play();
+                break;
+            case 6:
+                Track06.play();
+                break;
+            case 7:
+                Track07.play();
+                break;
+            case 8:
+                Track08.play();
+                break;
+            default:
+                Track01.play();
+                break;
+        }
+    }
+
+
+  function countdown()
+        {
+            if(time < 60)
+            {
+                document.getElementById('countdown').innerHTML = time + " Seconds";
+            }
+            else if(time == 15){
+                playMusic();
+            }
+            else
+            {
+                document.getElementById('countdown').innerHTML = Math.floor(time/60) + " Minutes " + (time - (60 * Math.floor(time/60))) + " Seconds";
+            }
+
+            time --;
+            
+            if(time < 0)
+            {
+                if(!Gameing)
+                {
+                    time = 360;
+                    Gameing = true;
                 }
-            } else {
-                elem.innerHTML = `${minutes}:${seconds}`;
-                time--;
-                // Play audio when countdown begins
-                if (time == 15) {
-                    playMusic();
+                else
+                {
+                    document.getElementById('countdown').innerHTML = "Game Over!";
+                    gameOver = true;
+                    document.getElementById('gameOverButton').hidden = "";
+                    clearInterval(timerID);
+                }                
+            }
+        }
+    
+
+    var request = new XMLHttpRequest();
+    request.open('GET','sendRedTeam', true);
+    request.onload = function() {
+        var response = request.response;
+        redTeam = response.split(",");
+    }
+    request.send(null);
+
+    var request2 = new XMLHttpRequest();
+    request2.open('GET','sendGreenTeam', true);
+    request2.onload = function() {
+        var response2 = request2.response;
+        greenTeam = response2.split(",");
+    }
+    request2.send(null);
+
+    function getHits()
+        {
+            if(Gameing && !gameOver)
+            {
+                var request = new XMLHttpRequest();
+                request.open('GET','recieve_traffic', true);
+                request.onload = function() {
+                    var response = request.response;
+                    const dataArray = response.split(":");
+        
+                    if(dataArray[0] == 'red')
+                    {
+                        document.getElementById("playerWhoShot").innerHTML = document.getElementById("playerWhoShot").innerHTML + "<span style='color: rgb(245, 8, 8);'>" + redTeam[dataArray[1]] + "</span>" + " shot " + "<span style='color: rgb(11, 241, 80);'>" + greenTeam[dataArray[2]] + "</span>" + "<br>";
+                        document.getElementById(redTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(redTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML) + 10;
+                        document.getElementById("red_team_score").innerHTML = parseInt(document.getElementById("red_team_score").innerHTML) + 10;
+
+                        document.getElementById(greenTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(greenTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML) - 10;
+                        document.getElementById("green_team_score").innerHTML = parseInt(document.getElementById("green_team_score").innerHTML) - 10;
+                        if(parseInt(document.getElementById("red_team_score").innerHTML) > parseInt(document.getElementById("green_team_score").innerHTML))
+                        {
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "1px";  
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";    
+                        }
+                        else if(parseInt(document.getElementById("red_team_score").innerHTML) == parseInt(document.getElementById("green_team_score").innerHTML))
+                        {
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";         
+                        }
+
+                    }
+                    else
+                    {
+                        document.getElementById("playerWhoShot").innerHTML = document.getElementById("playerWhoShot").innerHTML + "<span style='color: rgb(11, 241, 80);'>" + greenTeam[dataArray[1]] + "</span>" + " hit " + "<span style='color: rgb(245, 8, 8);'>" + redTeam[dataArray[2]] +"</span>" + "<br>";
+                        document.getElementById(greenTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(greenTeam[dataArray[1]] + "_score").querySelector(".score").innerHTML) + 10;
+                        document.getElementById("green_team_score").innerHTML = parseInt(document.getElementById("green_team_score").innerHTML) + 10;
+
+                        document.getElementById(redTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML = parseInt(document.getElementById(redTeam[dataArray[2]] + "_score").querySelector(".score").innerHTML) - 10;
+                        document.getElementById("red_team_score").innerHTML = parseInt(document.getElementById("red_team_score").innerHTML) - 10;
+                        if(parseInt(document.getElementById("green_team_score").innerHTML) > parseInt(document.getElementById("red_team_score").innerHTML))
+                        {
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "1px";  
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";    
+                        }
+                        else if(parseInt(document.getElementById("green_team_score").innerHTML) == parseInt(document.getElementById("red_team_score").innerHTML))
+                        {
+                            document.getElementById("green_team_score").style.webkitTextStrokeWidth = "0px";
+                            document.getElementById("red_team_score").style.webkitTextStrokeWidth = "0px";         
+                        }
+                    }
+                    var myDiv = document.getElementById("playerWhoShot");
+                    myDiv.scrollTop = myDiv.scrollHeight;
                 }
+                request.send(null);
             }
+
+            setTimeout(getHits, 3000);
         }
 
-
-        // Seed generator function
-        function seedGenerator() {
-            // Generate a random seed using the seedrandom library with a specific seed value
-            const seed =  new Math.seedrandom(new Date().getTime().toString());
-            return seed;
+        getHits();
+        function goToPlayerEntry(){
+            window.location.href = "/";
         }
-
-        // Random number generator function for numbers 1 to 8, excluding 5
-        function trackGenerator() {
-            const seed = seedGenerator(); // Generate seed
-            let num = Math.floor(seed() * 8) + 1; // Generate random number between 1 and 8
-            let attempts = 0; // Counter for number of re-rolls
-
-            // Avoid number 5 by re-rolling if 5 is generated, with a limit of 10 re-rolls
-            while (num === 5 && attempts < 10) {
-                num = Math.floor(seed() * 8) + 1;
-                attempts++;
-            }
-            return num;
-        }
-
-        let trackNumber;
-
-        function sixMinTimer() {
-            sixTimer = "true";
-            startingMin = 6;
-            time = startingMin * 60;
-            timerId = setInterval(countdown, 1000);
-        }
-
-        let Track01 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Mineral.mp3');
-        let Track02 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track02.mp3');
-        let Track03 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track03.mp3');
-        let Track04 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track04.mp3');
-        let Track06 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track06.mp3');
-        let Track08 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track08.mp3');
-
-        function playMusic() {
-            trackNumber = trackGenerator();
-            switch (trackNumber) {
-                case 1:
-                    Track01.play();
-                    break;
-                case 2:
-                    Track02.play();
-                    break;
-                case 3:
-                    Track03.play();
-                    break;
-                case 4:
-                    Track04.play();
-                    break;
-                case 6:
-                    Track06.play();
-                    break;
-                case 7:
-                    Track07.play();
-                    break;
-                case 8:
-                    Track08.play();
-                    break;
-                default:
-                    Track01.play();
-                    break;
-            }
-        }
-
-        var elem = document.getElementById('countdown');
-        startingMin = 0.5;
-        time = startingMin * 60;
-        timerId = setInterval(countdown, 1000);
-        sixTimer = "false";
-    </script>
-
+</script>
 </body>
-
 </html>

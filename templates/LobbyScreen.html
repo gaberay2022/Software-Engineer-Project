@@ -5,42 +5,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/PlayerEntryScreen.css')}}">
   </head>
   <body>
-    <div class="splash_screen">
-      <h1> </h1>
-    </div>
     <h1 style="font-family: 'Courier New'; color:white">Enter Players</h1>
-    <form action="{{ url_for('LobbyScreen')}}" method="GET">
-      <input id="Lobby_btn" style="font-family: 'Courier New'; text-align: center;" type="submit" value="Lobby Creation Screen">
-    </form>
-
-    <form action='PlayerEntryScreen' method="POST">
+    <form action='LobbyScreenSubmit' method="POST">
+      <label for="lobby-id" id = "Lobby_btn" style="color: white; font-weight: bold;">Create Lobby Key:</label>
+      <input type="text" id="lobby-id" name="lobby-id"><br><br>
       <div class="container1"> 
-      <div class ="player1">
+      <div class="player1">
         <h3 style="color: red; text-align: center">Player 1</h3>
-        <label for="player-1-fn" style="color: red; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-1-fn" name="player-1-fn">
-        <label for="player-1-ln" style="color: red; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-1-ln" name="player-1-ln">
         <label for="player-1-cn" style="color: red; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-1-cn" name="player-1-cn"><br><br>
       </div>
 
       <div class="player1">
         <h3 style="color: red; text-align: center">Player 2</h3>
-        <label for="player-2-fn" style="color: red; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-2-fn" name="player-2-fn">
-        <label for="player-2-ln" style="color: red; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-2-ln" name="player-2-ln">
         <label for="player-2-cn" style="color: red; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-2-cn" name="player-2-cn"><br><br>
       </div>
 
       <div class="player1">
         <h3 style="color: red; text-align: center">Player 3</h3>
-        <label for="player-3-fn" style="color: red; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-3-fn" name="player-3-fn">
-        <label for="player-3-ln" style="color: red; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-3-ln" name="player-3-ln">
         <label for="player-3-cn" style="color: red; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-3-cn" name="player-3-cn"><br><br>
       </div>
@@ -50,30 +33,18 @@
     <div class="container2">
       <div class="player2">
         <h3 style="color: green; text-align: center">Player 4</h3>
-        <label for="player-4-fn" style="color: green; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-4-fn" name="player-4-fn">
-        <label for="player-4-ln" style="color: green; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-4-ln" name="player-4-ln">
         <label for="player-4-cn" style="color: green; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-4-cn" name="player-4-cn"><br><br>
       </div>
       
       <div class="player2">
         <h3 style="color: green; text-align: center">Player 5</h3>
-        <label for="player-5-fn" style="color: green; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-5-fn" name="player-5-fn">
-        <label for="player-5-ln" style="color: green; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-5-ln" name="player-5-ln">
         <label for="player-5-cn" style="color: green; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-5-cn" name="player-5-cn"><br><br>
       </div>
       
       <div class="player2">
         <h3 style="color: green; text-align: center">Player 6</h3>
-        <label for="player-6-fn" style="color: green; font-weight: bold;">First Name:</label>
-        <input type="text" id="player-6-fn" name="player-6-fn">
-        <label for="player-1-ln" style="color: green; font-weight: bold;">Last Name:</label>
-        <input type="text" id="player-6-ln" name="player-6-ln">
         <label for="player-1-cn" style="color: green; font-weight: bold;">Code Name:</label>
         <input type="text" id="player-6-cn" name="player-6-cn"><br><br>
       </div>
@@ -84,9 +55,8 @@
     </form>
     
     <br><br>
-    
     <form action="{{ url_for('GamePlayScreen')}}" method="POST">
-    <label for="lobby-id" id = "start_game_btn" style="color: white; font-weight: bold;">Lobby ID:</label>
+    <label for="lobby-id" id = "start_game_btn" style="color: white; font-weight: bold;">Enter Lobby ID:</label>
     <input type="text" id="lobby-id" name="lobby-id"><br><br>
     <button type="submit" id = "start_game_btn" style="color: white; font-weight: bold;">Start Game</button>
 </body>
