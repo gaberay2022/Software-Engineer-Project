@@ -1,72 +1,138 @@
 <!-- lizbet rivera created basic player entry page -->
 
-
 <!DOCTYPE html>
 <html>
 
-
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
-<title>Entry Terminal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
+    <title>Entry Terminal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
 </head>
 
 <body>
-<h2></h2>
+    <h2></h2>
 
-<div class="flex-teams">
-    <div class="flex-child red-team">
-        <p class="red_team_text">RED
-            TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
+    <div class="flex-teams">
+        <div class="flex-child red-team">
+            <p class="red_team_text">RED
+                TEAM<br>SCORE:000<br>TEAM MEMBERS:<br>{{player[0]}}</p>
+        </div>
+        <div class="flex-child green-team">
+            <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
+                MEMBERS:<br>{{player[1]}}</p>
+        </div>
     </div>
-    <div class="flex-child green-team">
-        <p class="green_team_text">GREEN TEAM<br>SCORE: 000<br>TEAM
-            MEMBERS:<br>{{player[1]}}</p>
+
+    <div class="countdown-section">
+        <p style="color: white; font-family:'Courier New'">Time Left:</p>
+        <p style="color: white; font-family:'Courier New'" id="countdown"></p>
     </div>
-</div>
 
-<div class = "countdown-section">
-    <p style="color: white; font-family:'Courier New'">Time Left:</p>
-    <p style="color: white; font-family:'Courier New'" id ="countdown"></p>
-</div>
+    <div class="Play-by-Play">
+        <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
+    </div>
 
-<div class="Play-by-Play">
-    <p style="color: white; font-family:'Courier New'"><b>PLAY BY PLAY</b></p>
-</div>
+    <audio autoplay id="myAudio"> </audio>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script>
+        // Function to handle the countdown
+        function countdown() {
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
 
+            seconds = seconds < 10 ? '0' + seconds : seconds;
 
-<script>
-    function countdown() {
-    const minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    if (time == -1) {
-        clearTimeout(timerId);
-        if(sixTimer == "false"){
-            sixMinTimer();
+            if (time == -1) {
+                clearTimeout(timerId);
+                if (sixTimer == "false") {
+                    sixMinTimer();
+                }
+            } else {
+                elem.innerHTML = `${minutes}:${seconds}`;
+                time--;
+                // Play audio when countdown begins
+                if (time == 15) {
+                    playMusic();
+                }
+            }
         }
-    } 
-    else {
-        elem.innerHTML = `${minutes}:${seconds}`;;
-        time--;
-    }
-}
 
-function sixMinTimer(){
-    sixTimer = "true"
-    startingMin = 6;
-    time = startingMin * 60;
-    timerId = setInterval(countdown, 1000);
-}
 
-var elem = document.getElementById('countdown');   
-startingMin = 0.5;
-time = startingMin * 60;
-timerId = setInterval(countdown, 1000);
-sixTimer = "false"
-</script>
+        // Seed generator function
+        function seedGenerator() {
+            // Generate a random seed using the seedrandom library with a specific seed value
+            const seed =  new Math.seedrandom(new Date().getTime().toString());
+            return seed;
+        }
 
+        // Random number generator function for numbers 1 to 8, excluding 5
+        function trackGenerator() {
+            const seed = seedGenerator(); // Generate seed
+            let num = Math.floor(seed() * 8) + 1; // Generate random number between 1 and 8
+            let attempts = 0; // Counter for number of re-rolls
+
+            // Avoid number 5 by re-rolling if 5 is generated, with a limit of 10 re-rolls
+            while (num === 5 && attempts < 10) {
+                num = Math.floor(seed() * 8) + 1;
+                attempts++;
+            }
+            return num;
+        }
+
+        let trackNumber;
+
+        function sixMinTimer() {
+            sixTimer = "true";
+            startingMin = 6;
+            time = startingMin * 60;
+            timerId = setInterval(countdown, 1000);
+        }
+
+        let Track01 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Mineral.mp3');
+        let Track02 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track02.mp3');
+        let Track03 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track03.mp3');
+        let Track04 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track04.mp3');
+        let Track06 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track06.mp3');
+        let Track08 = new Audio('https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io/raw/41d11c9c357bf763042b8c59cabab84598cb8ca4/Track08.mp3');
+
+        function playMusic() {
+            trackNumber = trackGenerator();
+            switch (trackNumber) {
+                case 1:
+                    Track01.play();
+                    break;
+                case 2:
+                    Track02.play();
+                    break;
+                case 3:
+                    Track03.play();
+                    break;
+                case 4:
+                    Track04.play();
+                    break;
+                case 6:
+                    Track06.play();
+                    break;
+                case 7:
+                    Track07.play();
+                    break;
+                case 8:
+                    Track08.play();
+                    break;
+                default:
+                    Track01.play();
+                    break;
+            }
+        }
+
+        var elem = document.getElementById('countdown');
+        startingMin = 0.5;
+        time = startingMin * 60;
+        timerId = setInterval(countdown, 1000);
+        sixTimer = "false";
+    </script>
 
 </body>
+
 </html>
