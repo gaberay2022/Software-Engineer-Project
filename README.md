@@ -1,6 +1,6 @@
 # Laser Tag Project 
 
-A simulation of the original Photon lasertag system. 
+A simulation of the original Photon lasertag system developed in 1984 by George A. Carter III. All source code, as well as the two background image files, is available via this repository. The mp3 files used during gameplay are located on a [seperate repository](https://github.com/Abraham-Mitchell/Abraham-Mitchell.github.io) and do not need to be downloaded in order to play during simulation.
 
 ## Getting Started
 
@@ -32,7 +32,21 @@ To install psycopg2: pip3 install psycopg2
 
 To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/how-to-open-a-github-repository-in-vs-code-online/)
 
-To run code: python3 main.py
+To run code: `python3 main.py` or `flask --app main run`
+
+Make sure to enable autoplay on your web browser so that audio can play during game play screen. 
+ >[Enable on Safari](https://testgenius.com/help/safari-enable-auto-play-settings.pdf)
+
+
+ >[Enable on Firefox](https://support.mozilla.org/en-US/kb/block-autoplay)
+
+
+ >[Enable on Chrome](https://www.iheartradio.ca/100-3-the-bear/how-to-fix-autoplay-in-google-chrome-1.8728261)
+
+
+ >>There may be some variation based on your browser version.
+
+> Note, poor internet connection may cause audio files to not play. If this happens refresh brower or get better connection.
 
 ## Authors
 

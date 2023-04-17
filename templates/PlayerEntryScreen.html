@@ -9,7 +9,6 @@
       <h1> </h1>
     </div>
     <h1 style="font-family: 'Courier New'; color:white">Enter Players</h1>
-
     <form action="{{ url_for('LobbyScreen')}}" method="GET">
       <input id="Lobby_btn" style="font-family: 'Courier New'; text-align: center;" type="submit" value="Lobby Creation Screen">
     </form>
@@ -85,6 +84,7 @@
     </form>
     
     <br><br>
+    
     <form action="{{ url_for('GamePlayScreen')}}" method="POST">
     <label for="lobby-id" id = "start_game_btn" style="color: white; font-weight: bold;">Lobby ID:</label>
     <input type="text" id="lobby-id" name="lobby-id"><br><br>

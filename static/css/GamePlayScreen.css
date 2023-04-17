@@ -1,4 +1,4 @@
-/*implemented into html file by Gabriel Garcia*/
+/* Implemented into HTML file by Gabriel Garcia */
 /* Set the background images of the body element */
 body {
     background-image: url('R_Back.png'), url('G_Back.png');
@@ -32,12 +32,12 @@ body {
 }
 
 .flex-child {
-flex: 1;
-margin-right: 50px;
+    flex: 1;
+    margin-right: 50px;
 }
 
 .flex-child:first-child {
-margin-right: 20px;
+    margin-right: 20px;
 }
 
 .R_tableID,
@@ -56,13 +56,21 @@ margin-right: 20px;
     text-align: center;
 }
 
-.Play-by-Play{
+.Play-by-Play {
     position: fixed;
     text-align: center;
     border: 3px solid white;
     height: 200px;
-    width:  300px;
+    width: 300px;
     bottom: 0;
     right: 0;
     background-color: #000;
+}
+
+/* New styles for playing audio */
+.audio-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }

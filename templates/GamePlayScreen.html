@@ -1,12 +1,12 @@
 <!-- lizbet rivera created basic player entry page -->
 
-
 <!DOCTYPE html>
 <html>
 
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
-<title>Entry Terminal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/GamePlayScreen.css')}}">
+    <title>Entry Terminal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,6 @@
                 {% endif %}
             </ul>
     </div>
-</div>
 
 <div class = "countdown-section">
     <p style="color: white; font-family:'Courier New'">Time Left:</p>
@@ -253,7 +252,5 @@
             window.location.href = "/";
         }
 </script>
-
-
 </body>
 </html>
