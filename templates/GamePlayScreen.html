@@ -145,14 +145,15 @@
             {
                 document.getElementById('countdown').innerHTML = time + " Seconds";
             }
-            else if(time == 15){
-                playMusic();
-            }
             else
             {
                 document.getElementById('countdown').innerHTML = Math.floor(time/60) + " Minutes " + (time - (60 * Math.floor(time/60))) + " Seconds";
             }
 
+            if(time == 15){
+                playMusic();
+            }
+            
             time --;
             
             if(time < 0)
