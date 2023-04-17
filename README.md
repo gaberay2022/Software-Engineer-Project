@@ -34,6 +34,20 @@ To open repository on VScode: Follow [this guide](https://www.geeksforgeeks.org/
 
 To run code: `python3 main.py` or `flask --app main run`
 
+Make sure to enable autoplay on your web browser so that audio can play during game play screen. 
+ >[Enable on Safari](https://testgenius.com/help/safari-enable-auto-play-settings.pdf)
+
+
+ >[Enable on Firefox](https://support.mozilla.org/en-US/kb/block-autoplay)
+
+
+ >[Enable on Chrome](https://www.iheartradio.ca/100-3-the-bear/how-to-fix-autoplay-in-google-chrome-1.8728261)
+
+
+ >>There may be some variation based on your browser version.
+
+> Note, poor internet connection may cause audio files to not play. If this happens refresh brower or get better connection.
+
 ## Authors
 
 * **Gabriel Garcia** - *Team Lead* - [Gabriel-Garcia---Testing-Branch](https://github.com/gaberay2022/Software-Engineer-Project/tree/Gabriel-Garcia---Testing-Branch)
