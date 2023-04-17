@@ -12,14 +12,14 @@ body {
     color: red; 
     font-size: x-large; 
     align-self: flex-start;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    text-shadow: 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000;
 }
 
 .green_team_text {
     font-family:'Courier New'; 
     color: lightgreen; 
     font-size: x-large;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    text-shadow: 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000;
 }
 
 .flex-teams {
@@ -64,4 +64,5 @@ margin-right: 20px;
     width:  300px;
     bottom: 0;
     right: 0;
+    background-color: #000;
 }
