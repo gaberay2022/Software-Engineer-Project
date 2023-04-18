@@ -20,9 +20,9 @@ List of required software to be able to run this application:
 
 A step by step series of examples that tell you how to get a development env running:
 
-To install flask: pip3 install Flask==2.2.2
+To install flask:`pip3 install Flask==2.2.2`
 
-To install psycopg2: pip3 install psycopg2==2.9.5
+To install psycopg2:`pip3 install psycopg2==2.9.5`
 
   >If an error such as "Error: pg_config executable not found" is given,
   >the environment is missing necessary elements for successful installation.
