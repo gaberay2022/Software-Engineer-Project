@@ -80,7 +80,7 @@ Make sure to enable autoplay on your web browser so that audio can play during g
   Here we can see that the team who won has their score flashing. A "Go to Lobby" button appears sending you back to the player entry screen to start the game again.
 
 ## Warning
-  If you are hosting this on a website service, (we use heroku), The traffic generator will not work if more than one person is one the website. This happens due to the ports that they traffic generator is set up with sending on the same port at all times, not randomly assigned ports for each person.
+  If you are hosting this on a website service, (we used heroku), The traffic generator will not work if more than one person is on the website. This happens due to the ports that the traffic generator is set up with, sending on the same port at all times, not randomly assigned ports for each instance.
 # Authors
 
 * **Gabriel Garcia** - *Team Lead* - *Full-stack* - [Gabriel-Garcia---Testing-Branch](https://github.com/gaberay2022/Software-Engineer-Project/tree/Gabriel-Garcia---Testing-Branch)
