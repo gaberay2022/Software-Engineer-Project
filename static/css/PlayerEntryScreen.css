@@ -56,11 +56,13 @@
 .container1{
   display: flex;
   justify-content: space-between;
+  text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
 
 .container2{
   display: flex;
   justify-content: space-between;
+  text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
  label{
   display: block;
@@ -139,5 +141,7 @@ input{
 /* added a background image that fit the theme */
 body {
   background-image: url("entryBackground.jpeg");
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: left top, right top;
+  background-size: 100vw 150vh, 100vw 150vh;
 }

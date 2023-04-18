@@ -249,6 +249,26 @@
         }
 
         getHits();
+
+    function flashLargerScore() {
+        const redScore = parseInt(document.getElementById("red_team_score").innerText);
+        const greenScore = parseInt(document.getElementById("green_team_score").innerText);
+        if (redScore > greenScore) {
+            document.getElementById("red_team_score").classList.add("flash");
+            document.getElementById("green_team_score").classList.remove("flash");
+        } else if (greenScore > redScore) {
+            document.getElementById("green_team_score").classList.add("flash");
+            document.getElementById("red_team_score").classList.remove("flash");
+        } else {
+            // remove flashing effect if scores are tied
+            document.getElementById("red_team_score").classList.remove("flash");
+            document.getElementById("green_team_score").classList.remove("flash");
+        }
+    }
+
+        setInterval(flashLargerScore, 1000); // flash every 1 second
+
+
         function goToPlayerEntry(){
             window.location.href = "/";
         }

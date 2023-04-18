@@ -28,7 +28,7 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
-    left:60px;
+    left:50px;
 }
 
 .flex-child {
@@ -54,6 +54,7 @@ body {
     width: 100px;
     height: 100px;
     text-align: center;
+    left: 47%;
 }
 
 .Play-by-Play {
@@ -73,4 +74,18 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+}
+
+
+.flash {
+    animation: flash 1s ease-in-out infinite alternate;
+}
+
+@keyframes flash {
+    from {
+        text-shadow: inherit;
+    }
+    to {
+        text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;;
+    }
 }
