@@ -81,6 +81,7 @@ Make sure to enable autoplay on your web browser so that audio can play during g
 
 ## Warning
   If you are hosting this on a website service, (we used heroku), The traffic generator will not work if more than one person is on the website. This happens due to the ports that the traffic generator is set up with, sending on the same port at all times, not randomly assigned ports for each instance.
+  If issues above are fixed and someone is wanting to look over/run this code on a broader scale, make sure to utilize gunicorn version 22.0.0 due to a HTTP Request Smuggling (HRS) vulnerabilities found in previous verions.
 # Authors
 
 * **Gabriel Garcia** - *Team Lead* - *Full-stack* - [Gabriel-Garcia---Testing-Branch](https://github.com/gaberay2022/Software-Engineer-Project/tree/Gabriel-Garcia---Testing-Branch)
