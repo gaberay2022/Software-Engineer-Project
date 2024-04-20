@@ -12,7 +12,7 @@ List of required software to be able to run this application:
 * Flask==2.2.2
 * Jinja2==3.0
 * Werkzeug==2.2.2
-* gunicorn==20.1.0
+* gunicorn==22.0.0
 * psycopg2==2.9.5
 
 
